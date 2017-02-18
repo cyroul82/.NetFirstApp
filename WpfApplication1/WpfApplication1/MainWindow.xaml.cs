@@ -20,9 +20,52 @@ namespace WpfApplication1
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        private String hiddenWord;
+        private Int32 hiddenWordLength;
+        public static readonly String hideButtonText = "Hide";
+        public static readonly String resetButtonText = "Reset";
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void hideButton_Click(object sender, RoutedEventArgs e)
+        {
+            if ((String)hideButton.Content == hideButtonText)
+            {
+                //set the hidden word and its length
+                hiddenWord = hiddenWordTextBox.Text;
+                hiddenWordLength = hiddenWord.Length;
+
+                //Clear the textbox and disable it
+                hiddenWordTextBox.Clear();
+                hiddenWordTextBox.IsEnabled = false;
+                
+                //Set the button context to Reset
+                hideButton.Content = resetButtonText;
+                return;
+            }
+
+            if ((String)hideButton.Content == resetButtonText)
+            {
+                //set the hidden word and its length
+                hiddenWord = null;
+                hiddenWordLength = 0;
+
+                //Clear the textbox and disable it
+                hiddenWordTextBox.Clear();
+                hiddenWordTextBox.IsEnabled = true;
+
+                //Set the button context to Hide
+                hideButton.Content = hideButtonText;
+                return;
+
+            }
+
+
+
         }
     }
 }

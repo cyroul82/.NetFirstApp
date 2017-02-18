@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <TextBox x:Name="hiddenWordTextBox" Margin="10,10,359,284" TextWrapping="Wrap" TextAlignment="Center"/>
+        <Button x:Name="hideButton" HorizontalAlignment="Left" Margin="10,38,0,246" Width="75" Click="hideButton_Click" Content="Hide"/>
+
     </Grid>
 </Window>
