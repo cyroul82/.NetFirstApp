@@ -28,21 +28,7 @@ namespace WpfApplication1
 
         private void hideButton_Click(object sender, RoutedEventArgs e)
         {
-            //TODO : to put in action 
-            String strMaxChance = maxChanceTextBox.Text;
-            try
-            {
-                UInt32 i = Convert.ToUInt32(strMaxChance);
-            }
-            catch (FormatException fe)
-            {
-
-            }
-            catch (OverflowException oe)
-            {
-
-            }
-
+            
             if ((String)hideButton.Content == HIDE_BUTTON_TEXT)
             {
                 String s = hiddenWordTextBox.Text;
