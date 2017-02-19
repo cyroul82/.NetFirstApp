@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Input;
+using System.Drawing;
 
 namespace WpfApplication1
 {
@@ -45,6 +46,11 @@ namespace WpfApplication1
             if ((String)hideButton.Content == HIDE_BUTTON_TEXT)
             {
                 String s = hiddenWordTextBox.Text;
+                if(s.Length == 0)
+                {
+                    MessageBox.Show("If you don't enter a word,\n how do you want to play !!!", "Error Word", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
                 if (s.Length <= MIN_WORD_LENGTH)
                 {
                     MessageBox.Show("Please enter more than 4 characters !", "Error Characters Numbers", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -106,18 +112,16 @@ namespace WpfApplication1
 
         private void showControl()
         {
-            okButton.Visibility = Visibility.Visible;
-            letterTextBox.Visibility = Visibility.Visible;
-            chanceLabel.Visibility = Visibility.Visible;
-            chanceLabelText.Visibility = Visibility.Visible;
+            searchStackPanel.Visibility = Visibility.Visible;
+            chanceStackPanel.Visibility = Visibility.Visible;
+            labelTopText.Visibility = Visibility.Hidden;
         }
 
         private void hideControl()
         {
-            okButton.Visibility = Visibility.Hidden;
-            letterTextBox.Visibility = Visibility.Hidden;
-            chanceLabel.Visibility = Visibility.Hidden;
-            chanceLabelText.Visibility = Visibility.Hidden;
+            searchStackPanel.Visibility = Visibility.Hidden;
+            chanceStackPanel.Visibility = Visibility.Hidden;
+            labelTopText.Visibility = Visibility.Visible;
         }
 
         private void okButton_Click(object sender, RoutedEventArgs e)
@@ -135,13 +139,23 @@ namespace WpfApplication1
                 {
                     chanceCount--;
                     chanceLabel.Content = chanceCount;
-                    if(chanceCount == 0)
+                    switch (chanceCount)
                     {
-                        gameOver();
+                        case 0:
+                            gameFinish();
+                            break;
+                        case 1:
+                            chanceLabelText.Content = "Last Chance !";
+                            chanceLabelText.Foreground = System.Windows.Media.Brushes.Red;
+                            chanceLabel.Visibility = Visibility.Collapsed;
+                            break;
+
                     }
+                    
                 }
 
                 letterTextBox.Clear();
+                letterTextBox.Focus();
 
                 if (hiddenWordClass.isFinish())
                 {
@@ -155,6 +169,10 @@ namespace WpfApplication1
             if(chanceCount == MAX_CHANCES)
             {
                 MessageBox.Show("Perfect no mistakes Bravo :) !\n You Won", "Finished", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            if(chanceCount == 1)
+            {
+                MessageBox.Show("You Won in extremis !!! :)", "Finished", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
             else
             {
