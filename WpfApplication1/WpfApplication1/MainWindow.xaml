@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid VerticalAlignment="Center">
-        <TextBox x:Name="hiddenWordTextBox" Margin="178,86,191,208" TextWrapping="Wrap" TextAlignment="Center"/>
+        <TextBox x:Name="hiddenWordTextBox" Margin="178,86,191,208" TextWrapping="Wrap" TextAlignment="Center" KeyDown="hiddenWordTextBox_KeyDown"/>
         <Button x:Name="hideButton" HorizontalAlignment="Left" Margin="216,125,0,159" Width="75" Click="hideButton_Click" Content="Hide" VerticalAlignment="Center"/>
-        <TextBox x:Name="letterTextBox" HorizontalAlignment="Left" Visibility="Hidden"  Height="20" Margin="178,178,0,0" TextWrapping="Wrap" MaxLength="1" TextAlignment="Center" VerticalAlignment="Top" Width="55"/>
+        <TextBox x:Name="letterTextBox" HorizontalAlignment="Left" Visibility="Hidden"  Height="20" Margin="178,178,0,0" TextWrapping="Wrap" MaxLength="1" TextAlignment="Center" VerticalAlignment="Top" Width="55" KeyDown="letterTextBox_KeyDown"/>
         <Button x:Name="okButton" Content="OK" HorizontalAlignment="Left" Visibility="Hidden" Margin="251,178,0,0" VerticalAlignment="Top" Width="75" Click="okButton_Click"/>
         <Label x:Name="chanceLabelText" Content="Chance :" HorizontalAlignment="Left" Margin="349,160,0,0" VerticalAlignment="Top"/>
         <Label x:Name="chanceLabel" Content="" HorizontalAlignment="Left" Margin="419,160,0,0" VerticalAlignment="Top"/>

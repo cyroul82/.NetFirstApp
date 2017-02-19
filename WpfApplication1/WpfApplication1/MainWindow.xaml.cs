@@ -30,6 +30,7 @@ namespace WpfApplication1
         public MainWindow()
         {
             InitializeComponent();
+            hiddenWordTextBox.Focus();
             
         }
 
@@ -40,7 +41,7 @@ namespace WpfApplication1
                 String s = hiddenWordTextBox.Text;
                 if (s.Length <= MIN_WORD_LENGTH)
                 {
-                    MessageBox.Show("Please enter more 4 letters !", "Error letters Numbers", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Please enter more than 4 characters !", "Error Characters Numbers", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
                 else {
@@ -63,6 +64,7 @@ namespace WpfApplication1
             //Clear the textbox and disable it
             hiddenWordTextBox.Clear();
             hiddenWordTextBox.IsEnabled = true;
+            hiddenWordTextBox.Focus();
 
             letterTextBox.Clear();
 
@@ -89,6 +91,7 @@ namespace WpfApplication1
             hiddenWordTextBox.IsEnabled = false;
 
             showControl();
+            letterTextBox.Focus();
 
             //Set the button context to Reset
             hideButton.Content = RESET_BUTTON_TEXT;
@@ -154,5 +157,21 @@ namespace WpfApplication1
             reset();
         }
 
+        private void hiddenWordTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                hideButton_Click(this, new RoutedEventArgs());
+            }
+        }
+
+        private void letterTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                okButton_Click(this, new RoutedEventArgs());
+            }
+            
+        }
     }
 }
