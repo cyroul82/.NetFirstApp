@@ -48,6 +48,7 @@ namespace WpfApplication1
                 if (s.Length <= MIN_WORD_LENGTH)
                 {
                     MessageBox.Show("Please enter more than 4 characters !", "Error Characters Numbers", MessageBoxButton.OK, MessageBoxImage.Error);
+                    hiddenWordTextBox.Focus();
                     return;
                 }
                 else {
