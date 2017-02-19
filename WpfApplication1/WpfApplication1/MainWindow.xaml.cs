@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Input;
 using System.Drawing;
+using System.Text.RegularExpressions;
 
 namespace WpfApplication1
 {
@@ -17,36 +18,47 @@ namespace WpfApplication1
         private Int32 MIN_WORD_LENGTH = 4;
         private readonly Int32 MAX_CHANCES = 5;
         private Int32 chanceCount;
+        private Regex myRegex = new Regex("[a-zA-Z]");
 
         public MainWindow()
         {
             InitializeComponent();
             maxChanceTextBox.Text = MAX_CHANCES.ToString();
             hiddenWordTextBox.Focus();
-            
+
         }
 
         private void hideButton_Click(object sender, RoutedEventArgs e)
         {
-            
             if ((String)hideButton.Content == HIDE_BUTTON_TEXT)
             {
                 String s = hiddenWordTextBox.Text;
-                if(s.Length == 0)
+                if (myRegex.IsMatch(s))
                 {
-                    MessageBox.Show("If you don't enter a word,\n how do you want to play !!!", "Error Word", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
+                    if (s.Length == 0)
+                    {
+                        MessageBox.Show("If you don't enter a word,\nhow do you want to play ?!!", "Error Word", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+                    if (s.Length <= MIN_WORD_LENGTH)
+                    {
+                        MessageBox.Show("Please enter more than 4 characters !", "Error Size", MessageBoxButton.OK, MessageBoxImage.Error);
+                        hiddenWordTextBox.Focus();
+                        return;
+                    }
+                    else
+                    {
+                        start();
+                        return;
+                    }
                 }
-                if (s.Length <= MIN_WORD_LENGTH)
+                else
                 {
-                    MessageBox.Show("Please enter more than 4 characters !", "Error Characters Numbers", MessageBoxButton.OK, MessageBoxImage.Error);
-                    hiddenWordTextBox.Focus();
+                    MessageBox.Show("Enter a valid word, with only letter between a and z !!!", "Error Letter", MessageBoxButton.OK, MessageBoxImage.Error);
+                    reset();
                     return;
                 }
-                else {
-                    start();
-                    return;
-                }
+                
             }
 
             if ((String)hideButton.Content == RESET_BUTTON_TEXT)
@@ -58,7 +70,11 @@ namespace WpfApplication1
 
         private void reset()
         {
-            hiddenWordClass.reset();
+            if(hiddenWordClass != null)
+            {
+                hiddenWordClass.reset();
+            }
+            
 
             //Clear the textbox and disable it
             hiddenWordTextBox.Clear();
@@ -113,50 +129,60 @@ namespace WpfApplication1
         private void okButton_Click(object sender, RoutedEventArgs e)
         {
 
-            if (letterTextBox.Text.Length != 0) {
-                String s = letterTextBox.Text.ToUpper();
-                char c = s[0];
-                if (hiddenWordClass.isLetterPresent(c))
+            if (letterTextBox.Text.Length != 0)
+            {
+                if (myRegex.IsMatch(letterTextBox.Text))
                 {
-                    hiddenWordTextBox.Clear();
-                    hiddenWordTextBox.Text = hiddenWordClass.HiddenWord;
+                    String s = letterTextBox.Text.ToUpper();
+                    char c = s[0];
+                    if (hiddenWordClass.isLetterPresent(c))
+                    {
+                        hiddenWordTextBox.Clear();
+                        hiddenWordTextBox.Text = hiddenWordClass.HiddenWord;
+                    }
+                    else
+                    {
+                        chanceCount--;
+                        chanceLabel.Content = chanceCount;
+                        switch (chanceCount)
+                        {
+                            case 0:
+                                gameFinish();
+                                break;
+                            case 1:
+                                chanceLabelText.Content = "Last Chance !";
+                                chanceLabelText.Foreground = System.Windows.Media.Brushes.Red;
+                                chanceLabel.Visibility = Visibility.Collapsed;
+                                break;
+
+                        }
+
+                    }
+
+                    letterTextBox.Clear();
+                    letterTextBox.Focus();
+
+                    if (hiddenWordClass.isFinish())
+                    {
+                        gameFinish();
+                    }
                 }
                 else
                 {
-                    chanceCount--;
-                    chanceLabel.Content = chanceCount;
-                    switch (chanceCount)
-                    {
-                        case 0:
-                            gameFinish();
-                            break;
-                        case 1:
-                            chanceLabelText.Content = "Last Chance !";
-                            chanceLabelText.Foreground = System.Windows.Media.Brushes.Red;
-                            chanceLabel.Visibility = Visibility.Collapsed;
-                            break;
-
-                    }
-                    
+                    MessageBox.Show("Enter a valid letter, between a and z !!!", "Error Letter", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
                 }
-
-                letterTextBox.Clear();
-                letterTextBox.Focus();
-
-                if (hiddenWordClass.isFinish())
-                {
-                    gameFinish();
-                }
+                
             }
         }
 
         private void gameFinish()
         {
-            if(chanceCount == MAX_CHANCES)
+            if (chanceCount == MAX_CHANCES)
             {
                 MessageBox.Show("Perfect no mistakes Bravo :) !\n You Won", "Finished", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
-            if(chanceCount == 1)
+            if (chanceCount == 1)
             {
                 MessageBox.Show("You Won in extremis !!! :)", "Finished", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
@@ -164,7 +190,7 @@ namespace WpfApplication1
             {
                 MessageBox.Show("Well Done !\nYou Won", "Finished", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
-            
+
             reset();
 
         }
@@ -178,7 +204,7 @@ namespace WpfApplication1
 
         private void hiddenWordTextBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Enter)
+            if (e.Key == Key.Enter)
             {
                 hideButton_Click(this, new RoutedEventArgs());
             }
@@ -190,7 +216,8 @@ namespace WpfApplication1
             {
                 okButton_Click(this, new RoutedEventArgs());
             }
-            
+
         }
     }
 }
+
