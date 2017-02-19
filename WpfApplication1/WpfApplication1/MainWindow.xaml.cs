@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Input;
 using System.Drawing;
-using System.Text.RegularExpressions;
 
 namespace WpfApplication1
 {
@@ -18,7 +17,6 @@ namespace WpfApplication1
         private Int32 MIN_WORD_LENGTH = 4;
         private readonly Int32 MAX_CHANCES = 5;
         private Int32 chanceCount;
-        private Regex myRegex = new Regex("[a-zA-Z]");
 
         public MainWindow()
         {
@@ -28,39 +26,39 @@ namespace WpfApplication1
             
         }
 
-        private bool validChar(String s)
-        {
-            return myRegex.IsMatch(s);
-        }
-
         private void hideButton_Click(object sender, RoutedEventArgs e)
         {
+            //TODO : to put in action 
+            String strMaxChance = maxChanceTextBox.Text;
+            try
+            {
+                UInt32 i = Convert.ToUInt32(strMaxChance);
+            }
+            catch (FormatException fe)
+            {
+
+            }
+            catch (OverflowException oe)
+            {
+
+            }
 
             if ((String)hideButton.Content == HIDE_BUTTON_TEXT)
             {
                 String s = hiddenWordTextBox.Text;
-                if (myRegex.IsMatch(s))
+                if(s.Length == 0)
                 {
-                    if (s.Length == 0)
-                    {
-                        MessageBox.Show("If you don't enter a word,\n how do you want to play !!!", "Error Word", MessageBoxButton.OK, MessageBoxImage.Error);
-                        return;
-                    }
-                    if (s.Length <= MIN_WORD_LENGTH)
-                    {
-                        MessageBox.Show("Please enter more than 4 characters !", "Error Characters Numbers", MessageBoxButton.OK, MessageBoxImage.Error);
-                        hiddenWordTextBox.Focus();
-                        return;
-                    }
-                    else
-                    {
-                        start();
-                        return;
-                    }
+                    MessageBox.Show("If you don't enter a word,\n how do you want to play !!!", "Error Word", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
                 }
-                else
+                if (s.Length <= MIN_WORD_LENGTH)
                 {
-                    MessageBox.Show("Enter a valid word, with only letter between a and z !!!", "Error Letter", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Please enter more than 4 characters !", "Error Characters Numbers", MessageBoxButton.OK, MessageBoxImage.Error);
+                    hiddenWordTextBox.Focus();
+                    return;
+                }
+                else {
+                    start();
                     return;
                 }
             }
@@ -130,42 +128,34 @@ namespace WpfApplication1
         {
 
             if (letterTextBox.Text.Length != 0) {
-                if (myRegex.IsMatch(letterTextBox.Text)){
-                    String s = letterTextBox.Text.ToUpper();
-                    char c = s[0];
-                    if (hiddenWordClass.isLetterPresent(c))
-                    {
-                        hiddenWordTextBox.Clear();
-                        hiddenWordTextBox.Text = hiddenWordClass.HiddenWord;
-                    }
-                    else
-                    {
-                        chanceCount--;
-                        chanceLabel.Content = chanceCount;
-                        switch (chanceCount)
-                        {
-                            case 0:
-                                gameFinish();
-                                break;
-                            case 1:
-                                chanceLabelText.Content = "Last Chance !";
-                                chanceLabelText.Foreground = System.Windows.Media.Brushes.Red;
-                                chanceLabel.Visibility = Visibility.Collapsed;
-                                break;
-
-                        }
-
-                    }
-
-                    letterTextBox.Clear();
-                    letterTextBox.Focus();
-
+                String s = letterTextBox.Text.ToUpper();
+                char c = s[0];
+                if (hiddenWordClass.isLetterPresent(c))
+                {
+                    hiddenWordTextBox.Clear();
+                    hiddenWordTextBox.Text = hiddenWordClass.HiddenWord;
                 }
                 else
                 {
-                    MessageBox.Show("Enter a valid letter, between a and z !!!", "Error Letter", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
+                    chanceCount--;
+                    chanceLabel.Content = chanceCount;
+                    switch (chanceCount)
+                    {
+                        case 0:
+                            gameFinish();
+                            break;
+                        case 1:
+                            chanceLabelText.Content = "Last Chance !";
+                            chanceLabelText.Foreground = System.Windows.Media.Brushes.Red;
+                            chanceLabel.Visibility = Visibility.Collapsed;
+                            break;
+
+                    }
+                    
                 }
+
+                letterTextBox.Clear();
+                letterTextBox.Focus();
 
                 if (hiddenWordClass.isFinish())
                 {
