@@ -1,11 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace WpfApplication1
 {
+    /// <summary>
+    /// Interaction for MainWindow.xaml.cs
+    /// </summary>
+    /// 
     class HiddenWordClass
     {
         private String word;
@@ -17,7 +18,7 @@ namespace WpfApplication1
             Word = word;
         }
 
-        //Check whether the letter is in the word to find
+        //Check whether the letter is in the word to find or already found
         public bool isLetterPresent (char c)
         {
             bool b = false;

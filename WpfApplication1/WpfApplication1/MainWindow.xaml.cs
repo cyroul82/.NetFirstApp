@@ -1,17 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace WpfApplication1
 {
@@ -27,15 +16,19 @@ namespace WpfApplication1
         private Int32 MIN_WORD_LENGTH = 4;
         private readonly Int32 MAX_CHANCES = 5;
         private Int32 chanceCount;
+
         public MainWindow()
         {
             InitializeComponent();
+            maxChanceTextBox.Text = MAX_CHANCES.ToString();
             hiddenWordTextBox.Focus();
             
         }
 
         private void hideButton_Click(object sender, RoutedEventArgs e)
         {
+            
+
             if ((String)hideButton.Content == HIDE_BUTTON_TEXT)
             {
                 String s = hiddenWordTextBox.Text;
