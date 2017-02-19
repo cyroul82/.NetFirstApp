@@ -27,7 +27,20 @@ namespace WpfApplication1
 
         private void hideButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            //TODO : to put in action 
+            String strMaxChance = maxChanceTextBox.Text;
+            try
+            {
+                UInt32 i = Convert.ToUInt32(strMaxChance);
+            }
+            catch (FormatException fe)
+            {
+
+            }
+            catch (OverflowException oe)
+            {
+
+            }
 
             if ((String)hideButton.Content == HIDE_BUTTON_TEXT)
             {
@@ -72,7 +85,7 @@ namespace WpfApplication1
 
         private void start()
         {
-            hiddenWordClass = new HiddenWordClass(hiddenWordTextBox.Text);
+            hiddenWordClass = new HiddenWordClass(hiddenWordTextBox.Text.ToUpper());
 
             chanceCount = MAX_CHANCES;
 
@@ -110,7 +123,7 @@ namespace WpfApplication1
         {
 
             if (letterTextBox.Text.Length != 0) {
-                String s = letterTextBox.Text;
+                String s = letterTextBox.Text.ToUpper();
                 char c = s[0];
                 if (hiddenWordClass.isLetterPresent(c))
                 {
