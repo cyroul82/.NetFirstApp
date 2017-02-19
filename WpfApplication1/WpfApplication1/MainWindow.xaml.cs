@@ -151,7 +151,15 @@ namespace WpfApplication1
 
         private void gameFinish()
         {
-            MessageBox.Show("Well Done !\nYou Won", "Finished", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            if(chanceCount == MAX_CHANCES)
+            {
+                MessageBox.Show("Perfect no mistakes Bravo :) !\n You Won", "Finished", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else
+            {
+                MessageBox.Show("Well Done !\nYou Won", "Finished", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            
             reset();
 
         }
