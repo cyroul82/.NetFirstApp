@@ -18,30 +18,46 @@ namespace TQAge
             do
             {
                 Console.WriteLine("How old are you : ");
-                age = Convert.ToInt32(Console.ReadLine());
+
+                try
+                {
+                    age = Convert.ToInt32(Console.ReadLine());
 
 
-                if (age < 18)
-                {
-                    message = "Not for you !, you're not 18 years old !";
-                }
-                else if (age < 26)
-                {
-                    message = "Yound Status";
-                }
-                else if (age < 65)
-                {
-                    message = "Adult Status";
-                }
-                else
-                {
-                    message = "For retired !";
-                }
+                    if (age < 18)
+                    {
+                        message = "Not for you !, you're not 18 years old !";
+                    }
+                    else if (age < 26)
+                    {
+                        message = "Yound Status";
+                    }
+                    else if (age < 65)
+                    {
+                        message = "Adult Status";
+                    }
+                    else
+                    {
+                        message = "For retired !";
+                    }
 
-                Console.WriteLine(message);
-                Console.WriteLine("replay: (y/n)");
-                String sUser = Console.ReadLine();
-                flag = (sUser == "y") ? true : false;
+                    Console.WriteLine(message);
+                }
+                catch (FormatException fe)
+                {
+                    Console.WriteLine("Format Exception, Please enter an age valid !");
+                }
+                catch (OverflowException oe)
+                {
+                    Console.WriteLine("Overflow Exception : " + oe );
+                }
+                finally
+                {
+                    Console.WriteLine("replay: (y/n)");
+                    String sUser = Console.ReadLine();
+                    flag = (sUser == "y") ? true : false;
+                }
+                
                 
             }
             while (flag);

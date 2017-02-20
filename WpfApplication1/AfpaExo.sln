@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TQAge", "TQAge\TQAge.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Impair", "Impair\Impair.csproj", "{D904B361-AFBD-410A-9310-CCE17354F11F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailAdresse", "EmailAdresse\EmailAdresse.csproj", "{C159C561-04A8-4360-9E3D-9DDE85745501}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{D904B361-AFBD-410A-9310-CCE17354F11F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D904B361-AFBD-410A-9310-CCE17354F11F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D904B361-AFBD-410A-9310-CCE17354F11F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C159C561-04A8-4360-9E3D-9DDE85745501}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C159C561-04A8-4360-9E3D-9DDE85745501}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C159C561-04A8-4360-9E3D-9DDE85745501}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C159C561-04A8-4360-9E3D-9DDE85745501}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

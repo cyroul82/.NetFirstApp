@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>TQAge.Program</StartupObject>
+    <StartupObject>TQAge.TQAge</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

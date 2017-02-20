@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9D393D7E-6612-422A-A09A-9268FF7B5E7F}</ProjectGuid>
+    <ProjectGuid>{C159C561-04A8-4360-9E3D-9DDE85745501}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SiAge</RootNamespace>
-    <AssemblyName>SiAge</AssemblyName>
+    <RootNamespace>EmailAdresse</RootNamespace>
+    <AssemblyName>EmailAdresse</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>SiAge.SiAge</StartupObject>
+    <StartupObject>EmailAdresse.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
