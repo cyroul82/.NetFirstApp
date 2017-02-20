@@ -20,17 +20,33 @@ namespace Factor
                 nFactor = 1;
                 Console.WriteLine("Calcul de factorielle");
                 Console.Write("Entrez un nombre: ");
-                nNombre = Convert.ToInt32(Console.ReadLine());
-                
-                for (int i=1; i<= nNombre; i++)
+                try
                 {
-                    
-                    nFactor = nFactor * i;
-                }
-                Console.WriteLine("La factorielle de {0} est donc : {1}", nNombre, nFactor);
+                    nNombre = Convert.ToInt32(Console.ReadLine());
+                    for (int i = 1; i <= nNombre; i++)
+                    {
 
-                Console.WriteLine("Voulez-vous remcommence (o/n)" );
-                cRep = Console.ReadLine();
+                        nFactor = nFactor * i;
+                    }
+                    Console.WriteLine("La factorielle de {0} est donc : {1}", nNombre, nFactor);
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Erreur type can't convert !!! \n");
+                }
+                catch (OverflowException oe)
+                {
+                    Console.WriteLine("OverFlow Error : " + oe);
+                }
+                
+                
+                finally
+                {
+                    Console.WriteLine("Voulez-vous remcommence (o/n)");
+                    cRep = Console.ReadLine();
+                }
+
+                
             }
 
             Console.WriteLine("Bye bye");
