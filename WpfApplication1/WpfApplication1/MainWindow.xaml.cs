@@ -38,13 +38,12 @@ namespace WpfApplication1
                     if (s.Length == 0)
                     {
                         MessageBox.Show("If you don't enter a word,\nhow do you want to play ?!!", "Error Word", MessageBoxButton.OK, MessageBoxImage.Error);
-                        return;
+                        
                     }
-                    if (s.Length <= MIN_WORD_LENGTH)
+                    else if (s.Length <= MIN_WORD_LENGTH)
                     {
                         MessageBox.Show("Please enter more than 4 characters !", "Error Size", MessageBoxButton.OK, MessageBoxImage.Error);
                         hiddenWordTextBox.Focus();
-                        return;
                     }
                     else
                     {
@@ -56,7 +55,6 @@ namespace WpfApplication1
                 {
                     MessageBox.Show("Enter a valid word, with only letter between a and z !!!", "Error Letter", MessageBoxButton.OK, MessageBoxImage.Error);
                     reset();
-                    return;
                 }
                 
             }
@@ -182,12 +180,12 @@ namespace WpfApplication1
             {
                 MessageBox.Show("Perfect no mistakes Bravo :) !\n You Won", "Finished", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
-            if (chanceCount == 1)
+            else if (chanceCount == 1)
             {
                 MessageBox.Show("You Won in extremis !!! :)", "Finished", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                
             }
-            if(chanceCount != MAX_CHANCES && chanceCount != 1) 
+            else 
             {
                 MessageBox.Show("Well Done !\nYou Won", "Finished", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
