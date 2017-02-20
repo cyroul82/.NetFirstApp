@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace WpfApplication1
+namespace PenduNameSpace
 {
     /// <summary>
     /// Interaction for MainWindow.xaml.cs

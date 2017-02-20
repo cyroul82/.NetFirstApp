@@ -4,7 +4,7 @@ using System.Windows.Input;
 using System.Drawing;
 using System.Text.RegularExpressions;
 
-namespace WpfApplication1
+namespace PenduNameSpace
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

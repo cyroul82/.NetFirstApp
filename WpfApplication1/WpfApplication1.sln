@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApplication1", "WpfApplication1\WpfApplication1.csproj", "{1F4E1F74-CD03-4FAE-81C1-6B8D69CB5A21}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pendu", "WpfApplication1\Pendu.csproj", "{1F4E1F74-CD03-4FAE-81C1-6B8D69CB5A21}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hypo", "Hypo\Hypo.csproj", "{7E632DCF-5B6D-4336-9260-E7FE4D20BEC8}"
 EndProject
