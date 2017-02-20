@@ -185,8 +185,9 @@ namespace WpfApplication1
             if (chanceCount == 1)
             {
                 MessageBox.Show("You Won in extremis !!! :)", "Finished", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+               
             }
-            else
+            if(chanceCount != MAX_CHANCES && chanceCount != 1) 
             {
                 MessageBox.Show("Well Done !\nYou Won", "Finished", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
