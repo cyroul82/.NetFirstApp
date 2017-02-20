@@ -147,7 +147,7 @@ namespace WpfApplication1
                         switch (chanceCount)
                         {
                             case 0:
-                                gameFinish();
+                                gameOver();
                                 break;
                             case 1:
                                 chanceLabelText.Content = "Last Chance !";
