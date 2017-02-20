@@ -25,7 +25,7 @@ namespace Factor
                     nNombre = Convert.ToInt32(Console.ReadLine());
                     for (int i = 1; i <= nNombre; i++)
                     {
-
+                    
                         nFactor = nFactor * i;
                     }
                     Console.WriteLine("La factorielle de {0} est donc : {1}", nNombre, nFactor);
