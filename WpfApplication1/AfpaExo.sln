@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailAdresse", "EmailAdress
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Somme", "Somme\Somme.csproj", "{206EAF13-E078-4546-B64B-DF4B2541F7C1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pendu_AFPA", "Pendu_AFPA\Pendu_AFPA.csproj", "{51AF50C6-740C-4281-B30E-AC2EDF65C4C1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{206EAF13-E078-4546-B64B-DF4B2541F7C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{206EAF13-E078-4546-B64B-DF4B2541F7C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{206EAF13-E078-4546-B64B-DF4B2541F7C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51AF50C6-740C-4281-B30E-AC2EDF65C4C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51AF50C6-740C-4281-B30E-AC2EDF65C4C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51AF50C6-740C-4281-B30E-AC2EDF65C4C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51AF50C6-740C-4281-B30E-AC2EDF65C4C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
