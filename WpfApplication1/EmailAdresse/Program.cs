@@ -24,8 +24,7 @@ namespace EmailAdresse
 
                 //check if the email contains the @ symbol
                 if (isThereOnlyOneAt(email))
-                {
-                    
+                { 
                     //get the postion in the string of the @
                     int atPostion = email.IndexOf('@');
 
@@ -36,19 +35,8 @@ namespace EmailAdresse
 
                     if (isStringOk(firstPartEmail) && isStringOk(secondPartEmail))
                     {
-
                         Console.WriteLine("Your email is right : {0}", email);
-
                     }
-                    else
-                    {
-                        ErrorMessage("Your email must use only [a-z0-9 . - _]");
-                    }
-
-                }
-                else
-                {
-                    ErrorMessage("Your email must have @ symbol and only one !");
                 }
                 
                 Console.WriteLine("Again (y/n)");
@@ -80,6 +68,7 @@ namespace EmailAdresse
             }
             else {
                 flag = false;
+                ErrorMessage("You can have only one @ !!!");
             }
 
             return flag;
@@ -90,7 +79,7 @@ namespace EmailAdresse
             bool flag = true;
             if (!Char.IsLetterOrDigit(s[s.Length-1]))
             {
-                Console.WriteLine("Your email contains an error ! with a dot at the end !!!");
+                ErrorMessage("Your email contains an error ! with a dot at the end !!!");
                 flag = false;
             }
             else
@@ -100,10 +89,12 @@ namespace EmailAdresse
                     if (!(Char.IsLetterOrDigit(s[i]) || s[i] == '.' || s[i] == '-' || s[i] == '_'))
                     {
                         flag = false;
+                        ErrorMessage("Your email must use only [a-z0-9 . - _]");
                     }
                     if (s[i] == '.' && s[i + 1] == '.')
                     {
                         flag = false;
+                        ErrorMessage("You can't have 2 dots in a row !!!");
                     }
                 }
             }
