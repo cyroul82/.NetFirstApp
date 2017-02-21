@@ -33,7 +33,7 @@ namespace EmailAdresse
                     //put the second part in a string
                     String secondPartEmail = email.Substring(atPostion + 1, email.Length - firstPartEmail.Length - 1);
 
-                    if (isStringOk(firstPartEmail) && isStringOk(secondPartEmail))
+                    if (isStringOk(firstPartEmail) && isSecondStringOk(secondPartEmail))
                     {
                         Console.WriteLine("Your email is right : {0}", email);
                     }
@@ -76,44 +76,76 @@ namespace EmailAdresse
 
         private static bool isStringOk(String s)
         {
-             
+            
             bool flag = true;
-            if (s.Length <= 3)
+            int minLength = 3;
+            //To check the size of the string
+
+            if (!(s.Length < minLength))
             {
-                if (!Char.IsLetterOrDigit(s[s.Length - 1]))
+                if (!isCharOk(s))
                 {
-                    ErrorMessage("Your email contains an error ! with a dot at the end !!!");
                     flag = false;
+                    ErrorMessage("Error characters in the first part of your  email!!!");
                 }
-                else
+                
+            }
+            else
+            {
+                flag = false;
+                ErrorMessage("The First part of your email must have at least : " + minLength + " characters !");
+            }
+
+            return flag;
+        }
+
+        private static Boolean isSecondStringOk(String s)
+        {
+            Boolean flag = true;
+            int minLength = 4;
+
+            if (!(s.Length < minLength))
+            {
+                if (!isCharOk(s))
                 {
-                    for (int i = 0; i < s.Length; i++)
-                    {
-                        if (!(
-                                (s[i] >= 'a' && s[i] <= 'z')
-                                || s[i] == '.'
-                                || s[i] == '-'
-                                || s[i] == '_'
-                                || (s[i] >= 0 && s[i] <= 9))
-                            )
-                        {
-                            flag = false;
-                            ErrorMessage("Your email must use only [a-z0-9 . - _]");
-                        }
-                        if (s[i] == '.' && s[i + 1] == '.')
-                        {
-                            flag = false;
-                            ErrorMessage("You can't have 2 dots in a row !!!");
-                        }
-                    }
+                    flag = false;
+                    ErrorMessage("Error characters in the second part of your email !!!");
                 }
             }
             else
             {
                 flag = false;
-                ErrorMessage("Must have more character to be valid !");
+                ErrorMessage("The Second part of your email must have at least : " + minLength + "characters !");
             }
 
+
+                return flag;
+        }
+
+
+        //make sure that the string contain only godd character !!!
+        private static Boolean isCharOk(String s)
+        {
+            Boolean flag = true;
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (!(
+                        (s[i] >= 'a' && s[i] <= 'z')
+                        || s[i] == '.'
+                        || s[i] == '-'
+                        || s[i] == '_'
+                        || (s[i] >= 0 && s[i] <= 9))
+                    )
+                {
+                    flag = false;
+                    ErrorMessage("Your email must use only [a-z0-9 . - _]");
+                }
+                if (s[i] == '.' && s[i + 1] == '.')
+                {
+                    flag = false;
+                    ErrorMessage("You can't have 2 dots in a row !!!");
+                }
+            }
             return flag;
         }
         
