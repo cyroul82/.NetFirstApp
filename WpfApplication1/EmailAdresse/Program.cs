@@ -21,44 +21,36 @@ namespace EmailAdresse
 
                 //convert to lowercase
                 email = email.ToLower();
-                
-                //check to see if the first character is [a-z0-9] and last [a-z]
-                if (Char.IsLetterOrDigit(email[0]) && Char.IsLetter(email[email.Length-1]))
+
+                //check if the email contains the @ symbol
+                if (isThereOnlyOneAt(email))
                 {
-                    //check if the email contains the @ symbol
-                    if (isThereOnlyOneAt(email)) {
-                        
+                    
+                    //get the postion in the string of the @
+                    int atPostion = email.IndexOf('@');
 
-                        //get the postion in the string of the @
-                        int atPostion = email.IndexOf('@');
+                    //put the first part in a string 
+                    String firstPartEmail = email.Substring(0, atPostion);
+                    //put the second part in a string
+                    String secondPartEmail = email.Substring(atPostion + 1, email.Length - firstPartEmail.Length - 1);
 
-                        //put the first part in a string 
-                        String firstPartEmail = email.Substring(0, atPostion);
-                        //put the second part in a string
-                        String secondPartEmail = email.Substring(atPostion + 1, email.Length - firstPartEmail.Length - 1);
+                    if (isStringOk(firstPartEmail) && isStringOk(secondPartEmail))
+                    {
 
-                        if (isStringOk(firstPartEmail) && isStringOk(secondPartEmail))
-                        {
-      
-                            Console.WriteLine("Your email is right : {0}", email);
-                            
-                        }
-                        else
-                        {
-                            ErrorMessage("Your email must use only [a-z0-9 . - _]");
-                        }
+                        Console.WriteLine("Your email is right : {0}", email);
 
                     }
                     else
                     {
-                        ErrorMessage("Your email must have @ symbol and only one !");
+                        ErrorMessage("Your email must use only [a-z0-9 . - _]");
                     }
+
                 }
                 else
                 {
-                    ErrorMessage("First character and last character must be [a-z]!");
+                    ErrorMessage("Your email must have @ symbol and only one !");
                 }
-
+                
                 Console.WriteLine("Again (y/n)");
                 String s = Console.ReadLine();
                 s.ToLower();
