@@ -49,7 +49,7 @@ namespace Multi
             Console.Beep(noteDo, noire);
         }
 
-        private static void centerText(String text)
+        public static void centerText(String text)
         {
             int space = (Console.WindowWidth - text.Length) / 2;
             Console.SetCursorPosition(space, Console.CursorTop);
