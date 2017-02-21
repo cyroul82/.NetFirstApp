@@ -64,8 +64,6 @@ namespace EmailAdresse
                 flag = (s == "y") ? true : false;
             }
             while (flag);
-        
-
         }
 
         private static void ErrorMessage(String message)

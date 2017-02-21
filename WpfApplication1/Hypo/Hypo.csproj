@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Hypo.Program</StartupObject>
+    <StartupObject>Hypo.Hypo</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
