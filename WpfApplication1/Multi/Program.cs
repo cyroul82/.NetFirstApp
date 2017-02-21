@@ -35,7 +35,7 @@ namespace Multi
                 Console.ReadKey(true);
             }
 
-            //Au clair de la lu
+            //Au clair de la lune
             Console.Beep(noteDo, noire);
             Console.Beep(noteDo, noire);
             Console.Beep(noteDo, noire);
