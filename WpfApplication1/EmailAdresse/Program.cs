@@ -109,7 +109,7 @@ namespace EmailAdresse
                 {
                     flag = false;
                 }
-                if (!isDomainNameOk(s))
+                else if (!isDomainNameOk(s))
                 {
                     flag = false;
                 }
@@ -127,23 +127,35 @@ namespace EmailAdresse
         private static Boolean isCharOk(String s)
         {
             Boolean flag = true;
-            for (int i = 0; i < s.Length; i++)
+
+            if (!((s[0] >= 'a' && s[0] <= 'z') || (s[0] >= 0 && s[0] <= 9))
+                ||
+                (!(s[s.Length-1] >= 'a' && s[s.Length-1] <= 'z') || (s[s.Length-1] >= 0 && s[s.Length-1] <= 9) ))
             {
-                if (!(
-                        (s[i] >= 'a' && s[i] <= 'z')
-                        || s[i] == '.'
-                        || s[i] == '-'
-                        || s[i] == '_'
-                        || (s[i] >= 0 && s[i] <= 9))
-                    )
+                flag = false;
+                ErrorMessage("Can't start with that, can you write your email nicely ");
+            }
+            else
+            {
+
+                for (int i = 0; i < s.Length; i++)
                 {
-                    flag = false;
-                    ErrorMessage("Your email must use only [a-z0-9 . - _]");
-                }
-                if (s.Contains(".."))
-                {
-                    flag = false;
-                    ErrorMessage("You can't have 2 dots in a row !!!");
+                    if (!(
+                            (s[i] >= 'a' && s[i] <= 'z')
+                            || s[i] == '.'
+                            || s[i] == '-'
+                            || s[i] == '_'
+                            || (s[i] >= 0 && s[i] <= 9))
+                        )
+                    {
+                        flag = false;
+                        ErrorMessage("Your email must use only [a-z0-9 . - _]");
+                    }
+                    if (s.Contains(".."))
+                    {
+                        flag = false;
+                        ErrorMessage("You can't have 2 dots in a row !!!");
+                    }
                 }
             }
             return flag;
@@ -172,7 +184,7 @@ namespace EmailAdresse
                 String domain = s.Substring(0, lastDotPostion);
                 String endDomain = s.Substring(lastDotPostion+1, (s.Length-1)-domain.Length);
                 
-                if(endDomain.Length < 2)
+                if(endDomain.Length < 1)
                 {
                     flag = false;
                     ErrorMessage("Error in your domain name, missing a letter ???");
