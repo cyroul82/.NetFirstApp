@@ -44,7 +44,7 @@ namespace EmailAdresse
                 s.ToLower();
                 flag = (s == "y") ? true : false;
             }
-            while (true);
+            while (flag);
         }
 
         private static void ErrorMessage(String message)
@@ -86,7 +86,6 @@ namespace EmailAdresse
                 if (!isCharOk(s))
                 {
                     flag = false;
-                    ErrorMessage("Error characters in the first part of your  email!!!");
                 }
                 
             }
@@ -109,7 +108,10 @@ namespace EmailAdresse
                 if (!isCharOk(s))
                 {
                     flag = false;
-                    ErrorMessage("Error characters in the second part of your email !!!");
+                }
+                if (!isDomainNameOk(s))
+                {
+                    flag = false;
                 }
             }
             else
@@ -117,8 +119,6 @@ namespace EmailAdresse
                 flag = false;
                 ErrorMessage("The Second part of your email must have at least : " + minLength + "characters !");
             }
-
-
                 return flag;
         }
 
@@ -140,12 +140,45 @@ namespace EmailAdresse
                     flag = false;
                     ErrorMessage("Your email must use only [a-z0-9 . - _]");
                 }
-                if (s[i] == '.' && s[i + 1] == '.')
+                if (s.Contains(".."))
                 {
                     flag = false;
                     ErrorMessage("You can't have 2 dots in a row !!!");
                 }
             }
+            return flag;
+        }
+
+        private static Boolean isDomainNameOk (String s)
+        {
+            Boolean flag = true;
+            if (!s.Contains('.'))
+            {
+                flag = false;
+                ErrorMessage("You must have at least one dot in your Domain Name");
+            }
+            else
+            {
+                int lastDotPostion = 0;
+                for (int i = s.Length-1; i >= 0; i--)
+                {
+                    if (s[i] == '.')
+                    {
+                        lastDotPostion = i;
+                        break;
+                    }
+                }
+
+                String domain = s.Substring(0, lastDotPostion);
+                String endDomain = s.Substring(lastDotPostion+1, (s.Length-1)-domain.Length);
+                
+                if(endDomain.Length < 2)
+                {
+                    flag = false;
+                    ErrorMessage("Error in your domain name, missing a letter ???");
+                }
+            }
+
             return flag;
         }
         
