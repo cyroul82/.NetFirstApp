@@ -76,33 +76,42 @@ namespace EmailAdresse
 
         private static bool isStringOk(String s)
         {
+             
             bool flag = true;
-            if (!Char.IsLetterOrDigit(s[s.Length-1]))
+            if (s.Length <= 3)
             {
-                ErrorMessage("Your email contains an error ! with a dot at the end !!!");
-                flag = false;
+                if (!Char.IsLetterOrDigit(s[s.Length - 1]))
+                {
+                    ErrorMessage("Your email contains an error ! with a dot at the end !!!");
+                    flag = false;
+                }
+                else
+                {
+                    for (int i = 0; i < s.Length; i++)
+                    {
+                        if (!(
+                                (s[i] >= 'a' && s[i] <= 'z')
+                                || s[i] == '.'
+                                || s[i] == '-'
+                                || s[i] == '_'
+                                || (s[i] >= 0 && s[i] <= 9))
+                            )
+                        {
+                            flag = false;
+                            ErrorMessage("Your email must use only [a-z0-9 . - _]");
+                        }
+                        if (s[i] == '.' && s[i + 1] == '.')
+                        {
+                            flag = false;
+                            ErrorMessage("You can't have 2 dots in a row !!!");
+                        }
+                    }
+                }
             }
             else
             {
-                for (int i = 0; i < s.Length; i++)
-                {
-                    if (!(
-                            (s[i] >= 'a' && s[i] <= 'z')  
-                            || s[i] == '.' 
-                            || s[i] == '-' 
-                            || s[i] == '_' 
-                            || (s[i] >= 0 && s[i]<=9))
-                        )  
-                    {
-                        flag = false;
-                        ErrorMessage("Your email must use only [a-z0-9 . - _]");
-                    }
-                    if (s[i] == '.' && s[i + 1] == '.')
-                    {
-                        flag = false;
-                        ErrorMessage("You can't have 2 dots in a row !!!");
-                    }
-                }
+                flag = false;
+                ErrorMessage("Must have more character to be valid !");
             }
 
             return flag;
