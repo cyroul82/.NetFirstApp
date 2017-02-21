@@ -44,7 +44,7 @@ namespace EmailAdresse
                 s.ToLower();
                 flag = (s == "y") ? true : false;
             }
-            while (flag);
+            while (true);
         }
 
         private static void ErrorMessage(String message)
@@ -86,7 +86,13 @@ namespace EmailAdresse
             {
                 for (int i = 0; i < s.Length; i++)
                 {
-                    if (!(Char.IsLetterOrDigit(s[i]) || s[i] == '.' || s[i] == '-' || s[i] == '_'))
+                    if (!(
+                            (s[i] >= 'a' && s[i] <= 'z')  
+                            || s[i] == '.' 
+                            || s[i] == '-' 
+                            || s[i] == '_' 
+                            || (s[i] >= 0 && s[i]<=9))
+                        )  
                     {
                         flag = false;
                         ErrorMessage("Your email must use only [a-z0-9 . - _]");
@@ -101,6 +107,8 @@ namespace EmailAdresse
 
             return flag;
         }
+        
+       
 
 
     }
