@@ -61,6 +61,7 @@ namespace EmailAdresse
 
                 Console.WriteLine("Again (y/n)");
                 String s = Console.ReadLine();
+                s.ToLower();
                 flag = (s == "y") ? true : false;
             }
             while (flag);
