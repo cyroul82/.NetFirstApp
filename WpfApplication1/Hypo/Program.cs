@@ -28,9 +28,7 @@ namespace Hypo
                 yesOrNo.ToLower();
                 flag = (yesOrNo == "y") ? true : false;
             }
-            
-            
-        
+     
         }
 
         //Convert a string in Double, wait until true !
