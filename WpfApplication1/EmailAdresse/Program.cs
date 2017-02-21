@@ -56,7 +56,7 @@ namespace EmailAdresse
                 }
                 else
                 {
-                    ErrorMessage("First character must be [a-z0-9] and last character must be [a-z]!");
+                    ErrorMessage("First character and last character must be [a-z]!");
                 }
 
                 Console.WriteLine("Again (y/n)");
@@ -95,15 +95,23 @@ namespace EmailAdresse
         private static bool isStringOk(String s)
         {
             bool flag = true;
-            for (int i=0; i<s.Length; i++)
+            if (!Char.IsLetterOrDigit(s[s.Length-1]))
             {
-                if (!(Char.IsLetterOrDigit(s[i]) || s[i]=='.' || s[i]=='-' || s[i]=='_'))
+                Console.WriteLine("Your email contains an error ! with a dot at the end !!!");
+                flag = false;
+            }
+            else
+            {
+                for (int i = 0; i < s.Length; i++)
                 {
-                    flag = false;
-                }
-                if(s[i] == '.' && s[i+1] == '.')
-                {
-                    flag = false;
+                    if (!(Char.IsLetterOrDigit(s[i]) || s[i] == '.' || s[i] == '-' || s[i] == '_'))
+                    {
+                        flag = false;
+                    }
+                    if (s[i] == '.' && s[i + 1] == '.')
+                    {
+                        flag = false;
+                    }
                 }
             }
 
