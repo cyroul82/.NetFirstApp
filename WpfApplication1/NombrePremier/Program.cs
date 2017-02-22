@@ -12,8 +12,8 @@ namespace NombrePremier
         {
 
             int[] diviseurs = { 2, 3, 5, 7 };
-            int i = 1000000, j;
-            while (i < 2000000)
+            int i = 10, j;
+            while (i < 100)
             {
                 for (j = 0; j <= 3; j++)
                 {
