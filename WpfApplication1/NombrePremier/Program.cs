@@ -11,22 +11,39 @@ namespace NombrePremier
         static void Main(string[] args)
         {
 
-            int[] diviseurs = { 2, 3, 5, 7 };
-            int i = 10, j;
-            while (i < 100)
+            Console.Write("Jusqu'a combien voulez compter les nombres premiers : ");
+
+            try
             {
-                for (j = 0; j <= 3; j++)
+                int max = Convert.ToInt32(Console.ReadLine());
+                int Nombre = 3;
+                while (Nombre <= max)
                 {
-                    if (i % diviseurs[j] == 0)
+
+                    bool b2 = false;
+                    for (int i = 2; i <= Nombre - 1; i++)
                     {
-                        break;
+
+                        if (Nombre % i == 0)
+                        {
+                            b2 = true;
+                        }
                     }
-                    if (j == 3)
+                    if (!b2)
                     {
-                        Console.WriteLine(i + " est premier");
+                        Console.WriteLine("{0} est nombre premier ", Nombre);
                     }
+
+                    Nombre++;
                 }
-                i++;
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Votre valeur n'est pas un entier ");
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("Votre valeur dépasse Int32");
             }
 
             Console.ReadLine();
