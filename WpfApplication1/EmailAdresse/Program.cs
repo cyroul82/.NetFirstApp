@@ -86,8 +86,7 @@ namespace EmailAdresse
                 if (!isCharOk(s))
                 {
                     flag = false;
-                }
-                
+                }                
             }
             else
             {

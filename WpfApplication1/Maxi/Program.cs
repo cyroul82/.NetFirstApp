@@ -35,8 +35,24 @@ namespace Maxi
                 yesOrNo.ToLower();
                 flag = (yesOrNo == "o") ? true : false;
             }
-            
+
         }
+
+        private static Int32 getMaxFromIntTab(Int32[] tab)
+        {
+            Int32 maxi = 0;
+            for (int i = 0; i < tab.Length; i++)
+            {
+                tab[i] = convertToInt(Console.ReadLine()); ;
+                if (tab[i] > maxi)
+                {
+                    maxi = tab[i];
+                }
+            }
+            return maxi;
+        }
+
+        
 
         private static Int32 convertToInt(String s)
         {
