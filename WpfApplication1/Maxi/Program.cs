@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Maxi
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -38,7 +38,13 @@ namespace Maxi
 
         }
 
-        private static Int32 getMaxFromIntTab(Int32[] tab)
+        /// <summary>
+        /// Return the Max in a Int32 Array 
+        ///
+        /// <para> If the array length equals 0 then return a max at 0</para>
+        /// <returns>Return an Int32</returns>
+        /// </summary>
+        public static Int32 getMaxFromIntTab(Int32[] tab)
         {
             Int32 maxi = 0;
             for (int i = 0; i < tab.Length; i++)
@@ -54,7 +60,7 @@ namespace Maxi
 
         
 
-        private static Int32 convertToInt(String s)
+        public static Int32 convertToInt(String s)
         {
             Int32 n;
             while (!Int32.TryParse(s, out n))

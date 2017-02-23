@@ -21,6 +21,7 @@ namespace TriTable
             }
             Console.ReadLine();
 
+            Maxi.Program.getMaxFromIntTab(array);
             
         }
 
@@ -35,7 +36,6 @@ namespace TriTable
                         array[i] = array[j];
                         array[j] = a;
                     }
-
                 }
             }
             return array;
