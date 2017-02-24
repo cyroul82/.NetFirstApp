@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EmailAdresse
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -45,6 +45,39 @@ namespace EmailAdresse
                 flag = (s == "y") ? true : false;
             }
             while (flag);
+        }
+
+        /// <summary>
+        /// Check if your email address email is right !!!
+        /// 
+        /// <para>Takes an email String </para>
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns>Return true if email alright</returns>
+        public static Boolean checkEmail(String email)
+        {
+            Boolean b = false;
+
+            //convert to lowercase
+            email = email.ToLower();
+
+            //check if the email contains the @ symbol
+            if (isThereOnlyOneAt(email))
+            {
+                //get the postion in the string of the @
+                int atPostion = email.IndexOf('@');
+
+                //put the first part in a string 
+                String firstPartEmail = email.Substring(0, atPostion);
+                //put the second part in a string
+                String secondPartEmail = email.Substring(atPostion + 1, email.Length - firstPartEmail.Length - 1);
+
+                if (isStringOk(firstPartEmail) && isSecondStringOk(secondPartEmail))
+                {
+                    b = true;  
+                }
+            }
+            return b;
         }
 
         private static void ErrorMessage(String message)
